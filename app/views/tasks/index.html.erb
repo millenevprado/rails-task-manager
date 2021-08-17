@@ -1,13 +1,13 @@
 <h1>MY TASKS</h1>
 
-<ul>
+<ul class="list-group">
   <% @tasks.each do |task| %>
-  <li>
-    <% done = task.completed ? '[x]' : '[ ]'  %>
-    <%= "#{done} - #{task.title}: #{task.details}" %>
+    <li class="list-group-item">
+    <i class="<%= task.completed ? 'fas fa-check-square' : 'far fa-square' %>"></i> <%= - "#{task.title}: #{task.details}" %>
+
     <%= link_to 'see details', task_path(task) %>
     <%= link_to 'delete task', task_path(task), method: :delete, data: {confirm: 'Are you sure, alecrim dourado?'} %>
-  </li>
+    </li>
   <% end %>
 </ul>
 
