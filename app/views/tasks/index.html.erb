@@ -3,12 +3,16 @@
 <ul class="list-group">
   <% @tasks.each do |task| %>
     <li class="list-group-item">
-    <i class="<%= task.completed ? 'fas fa-check-square' : 'far fa-square' %>"></i> <%= - "#{task.title}: #{task.details}" %>
-
-    <%= link_to 'see details', task_path(task) %>
-    <%= link_to 'delete task', task_path(task), method: :delete, data: {confirm: 'Are you sure, alecrim dourado?'} %>
+    <i class="<%= task.completed ? 'fas fa-check-square' : 'far fa-square' %>"></i>
+    <%= link_to "#{task.title}: #{task.details}", task_path(task) %>
+    <%= link_to task_path(task), method: :delete, data: {confirm: "Delete #{task.title}?"} do %>
+        <i class="far fa-trash-alt"></i>
+      <% end %>
     </li>
   <% end %>
 </ul>
 
-<i class="fas fa-plus"></i> <%= link_to 'Add a new task', new_task_path %>
+<hr>
+<%= link_to new_task_path do %>
+  <i class="fas fa-plus"></i> Add a new task
+<% end %>
